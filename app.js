@@ -1,23 +1,4 @@
 //_____________________________Quiz app___________________________ 
-var userName = document.getElementById('userName');
-function showContainer() {
-    var hidden = document.getElementById("hidden");
-    if (userName.value === "") {
-        Swal.fire({
-            title: "Empty Feild",
-            text: "Please enter your name",
-            icon: "question"
-        });
-    } else {
-        document.getElementById('card').style.display = "none";
-        Swal.fire({
-            title: `Good Luck`,
-            text: `Total questions are 10`,
-        });
-        hidden.style.display = "block";
-    }
-}
-
 
 var question = [
     {
@@ -102,6 +83,26 @@ var question = [
     },
 ];
 
+var userName = document.getElementById('userName');
+
+
+function showContainer() {
+    var hidden = document.getElementById("hidden");
+    if (userName.value === "") {
+        Swal.fire({
+            title: "Empty Feild",
+            text: "Please enter your name",
+            icon: "question"
+        });
+    } else {
+        document.getElementById('card').style.display = "none";
+        Swal.fire({
+            title: `Good Luck`,
+            text: `Total questions are 10`,
+        });
+        hidden.style.display = "block";
+    }
+}
 var index = 0;
 var result = 0;
 
@@ -124,36 +125,72 @@ function renderQues() {
         var userName = document.getElementById('userName');
         if (result <= 5) {
             Swal.fire({
-                title: `Oops!`,
+                title: `Failed`,
                 text: `${userName.value}! Your sorce is ${result}`,
                 icon: "error"
             });
-        }
-        if (result > 5) {
+        } else {
             Swal.fire({
-                title: `congratulations`,
+                title: `Passed`,
                 text: `${userName.value}! Your sorce is ${result}`,
                 icon: "success"
             });
         }
         document.getElementById('card').style.display = "block";
         hidden.style.display = "none";
+        userName.value = ""
+        if (index !== 0) {
+            index = 0;
+            console.log(index)
+        }
         return;
-    }
-
-    container.innerHTML = `
+    } else {
+        container.innerHTML = `
         <p class="question">${index + 1}. ${question[index].question}</p><hr>
         <div class="optionDiv p-2 m-1"><label for="opt1"><input type="radio" name="option" value="${question[index].opt1}" onclick="showBtn()" id="opt1" class="form-check-input">  ${question[index].opt1}</label></div>
         <div class="optionDiv p-2 m-1"><label for="opt2"><input type="radio" name="option" value="${question[index].opt2}" onclick="showBtn()" id="opt2" class="form-check-input">  ${question[index].opt2}</label></div>
         <div class="optionDiv p-2 m-1"><label for="opt3"><input type="radio" name="option" value="${question[index].opt3}" onclick="showBtn()" id="opt3" class="form-check-input">  ${question[index].opt3}</label></div>
         <div class="optionDiv p-2 m-1"><label for="opt4"><input type="radio" name="option" value="${question[index].opt4}" onclick="showBtn()" id="opt4" class="form-check-input">  ${question[index].opt4}</label></div><br>
-        <button onclick="renderQues()" id="hiddenbtn" class="btn quizbtn">Next</button>
-`
-    index++
+        <div class="btnDiv">
+        <button id="backBtn" class="btn quizbtn hiddenbtn">Back</button>
+        <button onclick="renderQues(); showPerBtn()" id="hiddenbtn" class="btn quizbtn">Next</button>
+        </div>`
+
+
+        if (true) {
+            document.getElementById('backBtn').addEventListener("click", function () {
+                index--
+                container.innerHTML = `
+            <p class="question">${index}. ${question[index - 1].question}</p><hr>
+            <div class="optionDiv p-2 m-1"><label for="opt1"><input type="radio" name="option" value="${question[index - 1].opt1}" onclick="showBtn()" id="opt1" class="form-check-input">  ${question[index - 1].opt1}</label></div>
+            <div class="optionDiv p-2 m-1"><label for="opt2"><input type="radio" name="option" value="${question[index - 1].opt2}" onclick="showBtn()" id="opt2" class="form-check-input">  ${question[index - 1].opt2}</label></div>
+            <div class="optionDiv p-2 m-1"><label for="opt3"><input type="radio" name="option" value="${question[index - 1].opt3}" onclick="showBtn()" id="opt3" class="form-check-input">  ${question[index - 1].opt3}</label></div>
+            <div class="optionDiv p-2 m-1"><label for="opt4"><input type="radio" name="option" value="${question[index - 1].opt4}" onclick="showBtn()" id="opt4" class="form-check-input">  ${question[index - 1].opt4}</label></div><br>
+            <div class="btnDiv">
+            <button id="backBtn" class="btn quizbtn hiddenbtn">Back</button>
+            <button onclick="renderQues(); showPerBtn()" id="hiddenbtn" class="btn quizbtn">Next</button>
+            </div>`
+                index = index++
+                return
+            })
+            index++
+        }
+
+
+
+    }
 }
 renderQues()
+document.getElementById('backBtn').addEventListener('click', function () {
+    index--
+})
 
 function showBtn() {
     var hiddenbtn = document.getElementById('hiddenbtn');
     hiddenbtn.style.display = "block"
 }
+
+function showPerBtn() {
+    document.getElementById('backBtn').style.display = "block"
+}
+

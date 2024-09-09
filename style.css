@@ -1,5 +1,6 @@
 #hidden,
-#hiddenbtn {
+#hiddenbtn,
+.hiddenbtn {
     display: none;
 }
 
@@ -10,19 +11,19 @@ body {
     align-items: center;
     justify-content: center;
     background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20221231/pngtree-background-with-purple-theme-and-hexagons-image_1537776.jpg');
-    background-size: cover;
+    background-size: 100vw 100vh;
     background-repeat: no-repeat;
     font-size: larger;
 }
-
-.card {
-    width: fit-content;
+.containerCard{
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
+}
+.card {
     border: 2px #dba8ff double;
     background-color: #e1d3ff;
     text-align: center;
+    color: #ab3cfc;
 }
 
 .input {
@@ -58,7 +59,6 @@ body {
     border: 1px #ab3cfc solid;
     background-color: #e6dcff;
     border-radius: 4px;
-    width: 700px;
 }
 
 .quizbtn {
@@ -70,3 +70,9 @@ body {
     background-color: #e6dcff;
     border-radius: 4px;
 }
+.btnDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+
