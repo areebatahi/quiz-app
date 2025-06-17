@@ -1,78 +1,170 @@
-#hidden,
-#hiddenbtn,
-.hiddenbtn {
-    display: none;
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20221231/pngtree-background-with-purple-theme-and-hexagons-image_1537776.jpg');
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    font-size: larger;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3c3c5e);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
-.containerCard{
-    display: flex;
-    justify-content: space-around;
+
+.main {
+  width: 100%;
+  max-width: 720px;
 }
-.card {
-    border: 2px #dba8ff double;
-    background-color: #e1d3ff;
-    text-align: center;
-    color: #ab3cfc;
+
+/* Glassmorphism Card */
+.card,
+.quiz-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
 }
 
 .input {
-    outline: none;
-    border: 1px #ab3cfc solid;
-    border-radius: 4px;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.input::placeholder {
+  color: #ddd;
 }
 
 .btn {
-    background-color: #ab3cfc;
-    color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
 }
 
 .btn:hover {
-    background-color: #9f18ff;
-    color: white;
+  opacity: 0.85;
 }
 
-.form-check-input {
-    border: 1px #ab3cfc solid;
+/* Quiz Section */
+.question-container {
+  text-align: left;
+  margin-top: 20px;
 }
 
-.form-check-input:checked {
-    border: 1px #ab3cfc solid;
-    background-color: #ab3cfc;
-    box-shadow: 1px 1px 5px #ab3cfc;
-}
-
-#container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border: 1px #ab3cfc solid;
-    background-color: #e6dcff;
-    border-radius: 4px;
-}
-
-.quizbtn {
-    width: fit-content;
+.question {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
 .optionDiv {
-    border: 1px #ab3cfc solid;
-    background-color: #e6dcff;
-    border-radius: 4px;
-}
-.btnDiv{
-    display: flex;
-    justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 10px 0;
+  transition: background 0.3s;
+  cursor: pointer;
 }
 
+.optionDiv:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
+.optionDiv label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 12px;
+  accent-color: #ff4b2b;
+}
+
+/* Button Container */
+.btnDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.quizbtn {
+  width: 140px;
+  height: 45px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.quizbtn:hover {
+  background: linear-gradient(135deg, #ff4d76, #ff5638);
+
+}
+#hiddenbtn {
+  display: none;
+}
+
+.hiddenbtn {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .btn,
+  .quizbtn {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .input {
+    font-size: 1rem;
+  }
+
+  .optionDiv label {
+    font-size: 0.95rem;
+  }
+
+  .question {
+    font-size: 1.1rem;
+  }
+}
